@@ -18,10 +18,15 @@ if __name__ == '__main__':
         client.captureException()
 
     with open(sys.argv[1], "r") as f:
+        log_format = ""
         for line in f:
             try:
-                error_info = parser.parse_log(line)
+                if not log_format:
+                    log_format = parser.detect_log_type(line)
+
+                error_info = parser.parse_log(line, log_format)
                 status_code = error_info['status_code']
+
                 if status_code == '200' or status_code == '404':
                     client.capture(
                         "raven.events.Message",
