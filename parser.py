@@ -1,8 +1,7 @@
-__author__ = 'li'
+__author__ = 'lu-sa'
 
 import parse
 import raven
-
 
 
 LOG_TYPES = {
@@ -75,18 +74,9 @@ LOG_TYPES = {
 }
 
 
-def build_log_format(log_type):
-    log_format = ""
-
-    for field in log_type:
-        log_format += field
-
-    return log_format
-
-
 def parse_log(line):
     for TYPE in LOG_TYPES:
-        log_format = build_log_format(LOG_TYPES[TYPE])
+        log_format = ''.join(LOG_TYPES[TYPE])
         error_info = parse.parse(log_format, line)
 
         if error_info:
