@@ -74,12 +74,21 @@ LOG_TYPES = {
 }
 
 
-def parse_log(line):
+def detect_log_type(line):
     for TYPE in LOG_TYPES:
-        log_format = ''.join(LOG_TYPES[TYPE])
+        log_format = "".join(LOG_TYPES[TYPE])
         error_info = parse.parse(log_format, line)
 
         if error_info:
-            return error_info.named
+            return log_format
 
     raise "Unknown log type", line
+
+
+def parse_log(line, log_format):
+    error_info = parse.parse(log_format, line)
+
+    if error_info:
+        return error_info.named
+    else:
+        raise "Unknown log type", line 
