@@ -29,4 +29,4 @@ if __name__ == '__main__':
                         extra=error_info
                     )
             except Exception, e:
-                client.captureException(e)
+                client.captureException()
