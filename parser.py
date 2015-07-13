@@ -33,8 +33,9 @@ LOG_TYPES = {
         '{byte_in} ',
         '{byte_out} ',
         '{time_used} ',
-        '{request_hostname}"',
+        '{request_hostname}',
     ],
+
 
     'NGINX': [
         '{ip} ',
