@@ -6,6 +6,7 @@
 
 ## Summary
 Parsing information from HAProxy, lighttpd, nginx, ATS log files
+Check Status code and send to sentry if status code is 502 or 503
 ## Project structure
 ### Module parsers
 * Function build_log_format: create a formatting string to parse log files
@@ -23,5 +24,5 @@ pip install -r requirements.txt
 ```
 ### Use
 ```
-python main.py [file-log].
+python main.py [file-log]
 ```
