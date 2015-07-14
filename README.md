@@ -34,3 +34,4 @@ pip install -r requirements.txt
 python main.py [option] [file-log]
 ```
 option -r : for resume file
+
