@@ -8,21 +8,23 @@
 Parsing information from HAProxy, lighttpd, nginx, ATS log files
 Check Status code and send to sentry if status code is 502 or 503
 ## Project structure
-### Module parsers
-* Function build_log_format: create a formatting string to parse log files
-* Function parse_log_file: parse log files and return a dict of error information
+### Module parser
+* Function parse_log: parse log files and return a dict of error information
+* Function detect_log_type: Get log type
+* Function get_time_ats: return datetime type for time type of ats log
+* Function get_time_haproxy: return datetime type for time type of haproxy log
 
-### Module name
+### Module main
 Open log files to gather error information
 Initialize connection and push data to sentry server
 
 ## How to use
-### Install dependencies
+## Install dependencies
 Install dependencies package from file requirements.txt
 ```
 pip install -r requirements.txt
 ```
-### Use
+## Use
 ```
 python main.py [file-log]
 ```
