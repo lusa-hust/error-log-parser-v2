@@ -1,5 +1,3 @@
-__author__ = 'li'
-
 import sys
 import parser
 import raven
@@ -22,16 +20,18 @@ if __name__ == '__main__':
         for line in f:
             try:
                 if not log_format:
-                    log_format = parser.detect_log_type(line)
-
-                error_info = parser.parse_log(line, log_format)
+                    log_type, log_format = parser.detect_log_type(line)
+                    if log_type == 'HAPROXY2':
+                        log_type =  'HAPROXY'
+                error_info = parser.parse_log(line, log_type, log_format)
                 status_code = error_info['status_code']
 
-                if status_code == '200' or status_code == '404':
+                if status_code == 200 or status_code == 404:
                     client.capture(
                         "raven.events.Message",
-                        message=status_code,
+                        message=log_type + " " + str(status_code),
                         extra=error_info
                     )
             except Exception, e:
                 client.captureException()
+
