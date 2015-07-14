@@ -8,6 +8,11 @@
 Parsing information from HAProxy, lighttpd, nginx, ATS log files
 Check Status code and send to sentry if status code is 502 or 503
 ## Project structure
+### Module resume
+* Function check_cached: Check cached if file input has cached
+* Function save_to_cached: Save location by bytes of end of file log
+* Function get_last_location: Get last location for resume parse log
+
 ### Module parser
 * Function parse_log: parse log files and return a dict of error information
 * Function detect_log_type: Get log type
@@ -26,5 +31,6 @@ pip install -r requirements.txt
 ```
 ### Use
 ```
-python main.py [file-log]
+python main.py [option] [file-log]
 ```
+option -r : for resume file
