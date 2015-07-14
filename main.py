@@ -21,13 +21,18 @@ if __name__ == '__main__':
     file_name = sys.argv[1]
 
     if len(sys.argv) == 3:
-        RESUME = 1
+        file_name = sys.argv[2]
+        if sys.argv[1] == '-r':
+            RESUME = 1
+        else:
+            exit("Unknown Option")
 
 
     with open(file_name, "r") as f:
         # Resume
         if RESUME:
             f.seek(resume.get_last_location(file_name))
+        # print f.tell() # check RESUME
         log_format = ""
         for line in f:
             try:
