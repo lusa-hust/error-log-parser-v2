@@ -23,5 +23,5 @@ pip install -r requirements.txt
 ```
 ### Use
 ```
-python main.py [file-log]
+python main.py [file-log].
 ```
