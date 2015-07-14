@@ -19,12 +19,12 @@ Open log files to gather error information
 Initialize connection and push data to sentry server
 
 ## How to use
-## Install dependencies
+### Install dependencies
 Install dependencies package from file requirements.txt
 ```
 pip install -r requirements.txt
 ```
-## Use
+### Use
 ```
 python main.py [file-log]
 ```
