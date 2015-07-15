@@ -27,19 +27,18 @@ if __name__ == '__main__':
         else:
             exit("Unknown Option")
 
-
     with open(file_name, "r") as f:
-        # Resume
+        log_type, log_format = parser.detect_log_type(f.readline())
+        if log_type == 'HAPROXY2':
+            log_type = 'HAPROXY'
+
         if RESUME:
             f.seek(resume.get_last_location(file_name))
-        # print f.tell() # check RESUME
-        log_format = ""
+        else:
+            f.seek(0)
+
         for line in f:
             try:
-                if not log_format:
-                    log_type, log_format = parser.detect_log_type(line)
-                    if log_type == 'HAPROXY2':
-                        log_type = 'HAPROXY'
                 error_info = parser.parse_log(line, log_type, log_format)
                 status_code = error_info['status_code']
 
