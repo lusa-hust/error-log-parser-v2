@@ -46,7 +46,8 @@ if __name__ == '__main__':
                     client.capture(
                         "raven.events.Message",
                         message=log_type + " " + str(status_code),
-                        extra=error_info
+                        extra=error_info,
+                        date=error_info['time']
                     )
 
             except Exception, e:
