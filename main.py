@@ -33,6 +33,8 @@ if __name__ == '__main__':
             log_type = 'HAPROXY'
 
         if RESUME:
+            if not os.path.exists(".cached"):
+                os.makedirs(".cached")
             f.seek(resume.get_last_location(file_name))
         else:
             f.seek(0)
