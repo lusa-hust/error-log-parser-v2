@@ -1,0 +1,2 @@
+[my_host]
+li ansible_ssh_host=123.30.242.177 ansible_ssh_user=luongnv log_file=HAProxy.log.err
