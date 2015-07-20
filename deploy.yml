@@ -1,0 +1,27 @@
+---
+- hosts: my_host
+  sudo: yes
+  gather_facts: no
+  vars:
+        tools:
+           - git
+           - python-pip
+        PROJECT_HOME: /home/luongnv/error-log-parser-v2
+  tasks:
+      - name: install tools
+        apt: name={{item}} state=latest
+        with_items: "{{tools}}"
+
+      - name: install virtualenv
+        pip: name=virtualenv state=present
+
+      - name: clone git repository
+        git:  repo=https://github.com/lusa-hust/error-log-parser-v2
+              dest="{{PROJECT_HOME}}"
+              clone=yes
+
+      - name: create virtualenv
+        command: virtualenv {{PROJECT_HOME}}/env
+
+      - name: install requirements
+        pip: requirements={{PROJECT_HOME}}/requirements.txt virtualenv={{PROJECT_HOME}}/env
