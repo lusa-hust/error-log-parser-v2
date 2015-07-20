@@ -1,8 +1,0 @@
-- hosts: web
-  sudo: yes
-  tasks:
-  - name: Run test python
-    command: chdir=/opt/error-log-parser-v2 env/bin/python main.py {{ item }}
-    with_items:
-      - HAProxy.log.err
-      - lighttpd.log.err

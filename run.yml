@@ -3,7 +3,7 @@
   sudo: yes
   gather_facts: no
   vars:
-     - PROJECT_HOME: /home/luongnv/error-log-parser-v2
+     - PROJECT_HOME: /opt/error-log-parser-v2
   tasks:
      - name: run error log parser
        command: chdir={{PROJECT_HOME}} env/bin/python main.py {{log_file}}
