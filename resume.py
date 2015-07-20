@@ -3,7 +3,7 @@ import os.path
 
 
 def check_cached(file_name):
-    cached_name = "." + file_name + "-cached"
+    cached_name = ".cached/" + file_name
     if os.path.isfile(cached_name):
         return True
     else:
@@ -11,7 +11,7 @@ def check_cached(file_name):
 
 
 def save_to_cached(file_name, location_in_byte):
-    cached_name = "." + file_name + "-cached"
+    cached_name = ".cached/" + file_name
     if check_cached(file_name):
         os.remove(cached_name)
     f = open(cached_name, "w")
@@ -20,7 +20,7 @@ def save_to_cached(file_name, location_in_byte):
 
 
 def get_last_location(file_name):
-    cached_name = "." + file_name + "-cached"
+    cached_name = ".cached/" + file_name
     if check_cached(file_name):
         f = open(cached_name, "r")
         ret = f.read()
