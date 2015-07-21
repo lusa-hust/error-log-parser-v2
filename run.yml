@@ -6,7 +6,7 @@
      - PROJECT_HOME: /opt/error-log-parser-v2
   tasks:
      - name: create crontab entry to run script every minute
-       cron: name="list"
+       cron: name="parse log errors"
              user={{ansible_ssh_user}}
              job="cd {{PROJECT_HOME}} && env/bin/python main.py {{log_file}}"
      - name: run error log parser
