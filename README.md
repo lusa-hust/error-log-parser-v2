@@ -35,4 +35,4 @@ python main.py [option] [file-log]
 ```
 option -r : for resume file
 
-End document.
+-End document-
