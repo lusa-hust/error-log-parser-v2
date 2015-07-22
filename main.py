@@ -29,12 +29,13 @@ if __name__ == '__main__':
 
     with open(file_name, "r") as f:
         log_type, log_format = parser.detect_log_type(f.readline())
+        if not resume.os.path.exists(".cached"):
+            resume.os.makedirs(".cached")
+
         if log_type == 'HAPROXY2':
             log_type = 'HAPROXY'
 
         if RESUME:
-            if not resume.os.path.exists(".cached"):
-                resume.os.makedirs(".cached")
             f.seek(resume.get_last_location(file_name))
         else:
             f.seek(0)
