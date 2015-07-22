@@ -23,10 +23,10 @@ def get_last_location(file_name):
     cached_name = ".cached/" + file_name
     if check_cached(file_name):
         f = open(cached_name, "r")
-        old_size = f.read()
+        old_size = int(f.read())
         new_size = os.stat(file_name).st_size
         if old_size > new_size:
             return 0
         f.close()
-        return int(old_size)
+        return old_size
     return 0

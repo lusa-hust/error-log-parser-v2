@@ -33,8 +33,8 @@ if __name__ == '__main__':
             log_type = 'HAPROXY'
 
         if RESUME:
-            if not os.path.exists(".cached"):
-                os.makedirs(".cached")
+            if not resume.os.path.exists(".cached"):
+                resume.os.makedirs(".cached")
             f.seek(resume.get_last_location(file_name))
         else:
             f.seek(0)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                         "raven.events.Message",
                         message=log_type + " " + str(status_code),
                         extra=error_info,
-                        date=error_info['time']
+                        # date=error_info['time']
                     )
 
             except Exception, e:
