@@ -54,7 +54,7 @@ if __name__ == '__main__':
             error_info = parser.parse_log(line, log_type, log_format)
             status_code = error_info['status_code']
 
-            if status_code == 200 or status_code == 404:
+            if status_code == 502 or status_code == 503:
                 client.capture(
                     "raven.events.Message",
                     message=log_type + " " + str(status_code),
