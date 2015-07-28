@@ -36,12 +36,15 @@ if __name__ == '__main__':
         exit()
 
     file_name = sys.argv[1]
-
-    if is_erased(file_name):
-        # forget about saved offset
-        # delete offset file
-        # print "remove file"  # test point
-        os.remove(file_name+'.offset')
+    try:
+        if is_erased(file_name):
+            # forget about saved offset
+            # delete offset file
+            # print "remove file"  # test point
+            os.remove(file_name+'.offset')
+    except IOError:
+        # Error occur when first time run
+        pass
 
     try:
         pyg = Pygtail(file_name)
@@ -59,7 +62,7 @@ if __name__ == '__main__':
                     "raven.events.Message",
                     message=log_type + " " + str(status_code),
                     extra=error_info,
-                    # date=error_info['time']
+                    date=error_info['time']
                 )
 
     except StopIteration:
