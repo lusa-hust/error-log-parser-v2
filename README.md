@@ -27,8 +27,6 @@ pip install -r requirements.txt
 ```
 ### Use
 ```
-python main.py [option] [file-log]
+python main.py [file-log]
 ```
-option -r : for resume file
-
 -End document-
