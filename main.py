@@ -17,7 +17,7 @@ def is_erased(file_name):
 
 
 def get_offset_info(file_name):
-    offset_file = file_name + '.offset'
+    offset_file = ".offset/" + file_name
     with open(offset_file, 'r') as f:
         inode = int(f.readline())  # read inode
         offset = int(f.readline())  # read offset
@@ -36,23 +36,28 @@ if __name__ == '__main__':
         exit()
 
     file_name = sys.argv[1]
+    OFFSET_FILE = ".offset/" + file_name
+
+    if not os.path.exists(".offset"):
+        os.makedirs(".offset")
+
     try:
         if is_erased(file_name):
             # forget about saved offset
             # delete offset file
             # print "remove file"  # test point
-            os.remove(file_name+'.offset')
+            os.remove(OFFSET_FILE)
     except IOError:
         # Error occur when first time run
         pass
 
     try:
-        pyg = Pygtail(file_name)
+        pyg = Pygtail(file_name, OFFSET_FILE)
         first_line = pyg.next()
         # get log format and log type
         log_type, log_format = parser.detect_log_type(first_line)
 
-        for line in Pygtail(file_name):
+        for line in Pygtail(file_name, OFFSET_FILE):
             # print line  # test point
             error_info = parser.parse_log(line, log_type, log_format)
             status_code = error_info['status_code']
